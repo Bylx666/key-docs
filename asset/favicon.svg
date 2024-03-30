@@ -1,0 +1,22 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="svg-linear-triangle" gradientTransform="rotate(30)">
+      <stop offset="0%" stop-color="#799" />
+      <stop offset="100%" stop-color="#abb" />
+    </linearGradient>
+  </defs>
+  <style>
+    g {
+      stroke: url(#svg-linear-triangle);
+      stroke-width: 4px;
+      fill: none;
+      stroke-dasharray: 150;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+    }
+  </style>
+  <g>
+    <polygon points="32,8 56,48 8,48"/>
+    <polygon points="32,48 8,8 56,8"/>
+  </g>
+</svg>

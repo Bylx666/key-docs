@@ -1,0 +1,211 @@
+@font-face {
+  font-family: icon;
+  src: url(/asset/iconfont.woff2);
+}
+@font-face {
+  font-family: code;
+  src: url(/asset/code.woff2);
+}
+
+ico {
+  font-family: icon;
+}
+code {
+  font-family: code;
+}
+a {
+  text-decoration: underline dashed #dee;
+  color: #dee;
+  margin: 0 5px;
+}
+
+#loading {
+  z-index: 100;
+  position: absolute;
+  left: 0;top: -100%;width: 100%;height: 100%;
+  background-color: #2A3830;
+  transition: top 0.5s;
+}
+#loading.act {
+  top: 0;
+}
+
+#loading > svg {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+::selection {
+  background-color: #fff3;
+  text-shadow: 0 0 2px #000;
+}
+body {
+  margin: 0;
+  background-color: #1C2222;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+
+body > header {
+  z-index: 10;
+  position: absolute;
+  height: 60px;
+  width: 100%;
+  background-color: #000;
+  box-shadow: 0 2px 30px #000;
+  overflow: hidden;
+  display: flex;
+}
+body > header > img {
+  height: 50px;
+  width: 50px;
+  margin: 8px 30px 0 60px;
+}
+body > header > h2 {
+  color: #abb;
+  margin: 0;
+  line-height: 60px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+
+main {
+  position: absolute;
+  top: 60px;
+  height: calc(100% - 60px);
+  width: 100%;
+  display: flex;
+}
+
+main > nav {
+  color: #cdd;
+  width: 320px;
+  height: 100%;
+  background-color: #2A3333;
+  position: relative;
+  overflow: auto hidden;
+  padding: 30px 0 0 20px;
+}
+
+main > nav p {
+  margin: 0;
+  padding: 5px 20px;
+  font-size: 20px;
+  line-height: 30px;
+  cursor: pointer;
+  border-radius: 20px 0 0 20px;
+  transition: background-color 0.2s;
+}
+main > nav p > ico {
+  font-size: 15px;
+}
+main > nav div {
+  margin: 5px 0 10px 20px;
+  border-left: 2px #677 dashed;
+} 
+main > nav p:hover {
+  background-color: #fff2;
+}
+main > nav p.inactive:hover {
+  background-color: transparent;
+}
+
+main > nav > inner {
+  z-index: 1;
+  position: relative;
+}
+main > nav > shadow {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 0;
+  position: absolute;
+  left: -30px;
+  bottom: 10px;
+  font-size: 170px;
+  font-weight: bolder;
+  color: #3446;
+}
+
+main > article {
+  padding: 30px;
+  width: calc(100% - 400px);
+  overflow: auto;
+  font-size: 18px;
+}
+
+main > article > h1 {
+  color: #dee;
+  font-size: 20px;
+  position: relative;
+}
+main > article > h1::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -8px;
+  height: 2px;
+  background-image: linear-gradient(-90deg, #dee, transparent);
+}
+
+main > article > h2 {
+  color: #cdd;
+  font-size: 20px;
+  position: relative;
+  display: inline;
+}
+main > article > h2::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0px;
+  height: 8px;
+  background-color: #cdd2;
+}
+
+main > article > h3 {
+  color: #bcc;
+  font-size: 20px;
+}
+main > article > h4 {
+  color: #abb;
+  font-size: 20px;
+}
+
+main > article > p {
+  padding-left: 20px;
+}
+
+main > article code {
+  margin: 0 5px;
+  padding: 0 5px;
+  border-radius: 5px;
+  background-color: #344a;
+  color: #e0efef;
+}
+
+main > article > pre > code {
+  display: block;
+  padding: 10px 20px;
+  overflow-y: auto;
+}
+
+main > article > ol {
+  padding: 0 0 0 20px;
+  margin: 5px 20px;
+}
+main > article > ol > li {
+  padding: 5px 5px;
+}
+main > article > ol > li::marker {
+  color: #cdd;
+}

@@ -4,23 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Key Document</title>
-  <style>
-    #loading {
-      position: absolute;
-      left: 0;top: 0;width: 100%;height: 100%;
-      background-color: #2A3830;
-    }
-    #loading > svg {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-    }
-  </style>
+  <link rel="stylesheet" href="/asset/global.css">
+  <link rel="shortcut icon" href="/asset/favicon.svg" type="image/x-icon">
 </head>
 <body>
+  <!-- 加载 -->
   <div id="loading">
     <svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 64 64">
       <defs>
@@ -56,14 +44,14 @@
         }
         @keyframes loading-svg-triangle {
           0%, 20% {
-            stroke-width: 3px;
+            stroke-width: 2px;
             stroke-dashoffset: 0;
           }
           50% {
-            stroke-width: 2px;
+            stroke-width: 0px;
           }
           80%, 100% {
-            stroke-width: 3px;
+            stroke-width: 2px;
             stroke-dashoffset: 300;
           }
         }
@@ -103,5 +91,23 @@
       <circle cx="32" cy="26.5" r="7"/>
     </svg>
   </div>
+  
+  <!-- 页头 -->
+  <header>
+    <img src="/asset/favicon.svg" alt="logo">
+    <h2>文档 - Key Languege</h2>
+  </header>
+  
+   <!-- 内容 -->
+  <main>
+    <nav>
+      <inner>
+      </inner>
+      <shadow>KEY</shadow>
+    </nav>
+    <article></article>
+  </main>
+  <script src="/asset//marked.min.js"></script>
+  <script src="/asset/main.js"></script>
 </body>
 </html>
