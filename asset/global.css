@@ -134,11 +134,23 @@ main > nav > shadow {
   color: #3446;
 }
 
+@keyframes fade-in {
+  0% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
 main > article {
   padding: 30px;
   width: calc(100% - 400px);
   overflow: auto;
   font-size: 18px;
+  animation: fade-in 0.2s;
 }
 
 main > article > h1 {

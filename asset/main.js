@@ -20,8 +20,8 @@ const $loading = document.getElementById("loading");
 var load_start = ()=> $loading.className = "act";
 var load_end = ()=> $loading.className = "";
 
-const $article = document.querySelector("article");
-const $nav = document.querySelector("nav").children[0];
+const $main = document.querySelector("main");
+const $nav = $main.querySelector("nav");
 
 function render_nav(book) {
   var list = articles[book];
@@ -37,14 +37,19 @@ function render_nav(book) {
     let id = list[i];
     $p.onclick = ()=> {
       if(caches[book][id]) {
-        $article.innerHTML = caches[book][id];
+        $main.children[1].remove();
+        $main.append(caches[book][id]);
         return;
       }
       load_start();
       fetch(`/articles/guide/${id}.md`).then(v=>v.text()).then(str=> {
         let parsed = marked.parse(str);
-        caches[book][id] = parsed;
-        $article.innerHTML = parsed;
+        let $art = new_dom("article");
+        $art.innerHTML = parsed;
+        caches[book][id] = $art;
+
+        $main.children[1].remove();
+        $main.append($art);
         load_end();
       });
     }
