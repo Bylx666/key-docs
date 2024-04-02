@@ -9,6 +9,8 @@
 
 ico {
   font-family: icon;
+  user-select: none;
+  -webkit-user-select: none;
 }
 code {
   font-family: code;
@@ -44,8 +46,8 @@ a {
   text-shadow: 0 0 2px #000;
 }
 body {
+  background-color: #2A3333;
   margin: 0;
-  background-color: #1C2222;
   color: #fff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
@@ -62,10 +64,21 @@ body > header {
   overflow: hidden;
   display: flex;
 }
+body > header > ico {
+  color: #bcc;
+  font-size: 24px;
+  line-height: 60px;
+  padding: 0 20px 0 30px;
+  cursor: pointer;
+  transition: text-shadow 0.2s;
+}
+body > header > ico:hover {
+  text-shadow: 0 0 3px #fff;
+}
 body > header > img {
   height: 50px;
   width: 50px;
-  margin: 8px 30px 0 60px;
+  margin: 8px 20px 0 0;
 }
 body > header > h2 {
   color: #abb;
@@ -73,6 +86,18 @@ body > header > h2 {
   line-height: 60px;
   font-size: 16px;
   font-weight: normal;
+  flex-grow: 1;
+}
+body > header > but {
+  color: #bcc;
+  font-size: 16px;
+  line-height: 60px;
+  padding: 0 80px;
+  cursor: pointer;
+  transition: text-shadow 0.2s;
+}
+body > header > but:hover {
+  text-shadow: 0 0 3px #fff;
 }
 
 
@@ -82,6 +107,19 @@ main {
   height: calc(100% - 60px);
   width: 100%;
   display: flex;
+  transition: transform 0.5s;
+  overflow: hidden;
+}
+main::after {
+  content: "KEY LANGUEGE SPEC";
+  white-space: nowrap;
+  z-index: 0;
+  position: absolute;
+  left: -30px;
+  bottom: 10px;
+  font-size: 170px;
+  font-weight: bolder;
+  color: #3446;
 }
 
 main > nav {
@@ -117,23 +155,6 @@ main > nav p.inactive:hover {
   background-color: transparent;
 }
 
-main > nav > inner {
-  z-index: 1;
-  position: relative;
-}
-main > nav > shadow {
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
-  z-index: 0;
-  position: absolute;
-  left: -30px;
-  bottom: 10px;
-  font-size: 170px;
-  font-weight: bolder;
-  color: #3446;
-}
-
 @keyframes fade-in {
   0% {
     transform: translateY(15px);
@@ -146,11 +167,16 @@ main > nav > shadow {
 }
 
 main > article {
+  z-index: 2;
+  position: relative;
+  background-color: #1C2222;
+  box-shadow: 0 0 10px #1C2222;
   padding: 30px;
   width: calc(100% - 400px);
   overflow: auto;
   font-size: 18px;
   animation: fade-in 0.2s;
+  transition: transform 0.4s;
 }
 
 main > article > h1 {
@@ -220,4 +246,55 @@ main > article > ol > li {
 }
 main > article > ol > li::marker {
   color: #cdd;
+}
+
+about {
+  position: absolute;
+  top: 60px;
+  height: calc(100% - 60px);
+  width: 100%;
+  transition: transform 0.5s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: code;
+}
+
+about > svg-cont > svg {
+  height: 300px;
+}
+
+about > h1 {
+  font-size: 45px;
+  margin: 40px 0 25px 0;
+}
+about > p {
+  font-size: 9px;
+  margin: 0;
+}
+about > links {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+}
+about > links > a {
+  margin: 20px;
+  flex-grow: 1;
+}
+about > bg {
+  z-index: -1;
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  left: 0; top: 0;
+  background-image: linear-gradient(45deg, 
+    transparent 0%, 
+    transparent 15%, #303a35 20%, transparent 25%, 
+    transparent 60%, #354240 68%, transparent 75%, 
+    transparent 100%
+  );
+  background-size: 50% 100%;
+  background-repeat: repeat;
 }
