@@ -13,6 +13,8 @@ const articles = {
     "3.declare", "基本类型 2",
     "4.nature", "Key语言哲学",
     "5.class", "类定义",
+    "6.ops", "运算符",
+    "7.if_for", "if和for"
   ]
 };
 

@@ -248,6 +248,26 @@ main > article > ol > li::marker {
   color: #cdd;
 }
 
+main > article table {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+main > article th {
+  color: #abb;
+  font-size: 15px;
+  text-align: left;
+  border-bottom: 2px solid #abb;
+  padding-bottom: 10px;
+}
+main > article td {
+  padding-top: 10px;
+  border-bottom: 1px solid #344;
+}
+main > article td:first-child {
+  /* border-right: 2px solid #abb; */
+  padding-right: 30px;
+}
+
 about {
   position: absolute;
   top: 60px;
