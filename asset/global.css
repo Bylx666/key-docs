@@ -88,15 +88,24 @@ body > header > h2 {
   font-weight: normal;
   flex-grow: 1;
 }
-body > header > but {
+body > header > buts {
   color: #bcc;
+  padding-right: 80px;
+  display: flex;
+}
+body > header > buts > but {
   font-size: 16px;
   line-height: 60px;
-  padding: 0 80px;
-  cursor: pointer;
   transition: text-shadow 0.2s;
+  padding: 0 20px;
+  cursor: pointer;
 }
-body > header > but:hover {
+body > header > buts > but::before {
+  content: "\e86f";
+  font-family: icon;
+  padding-right: 5px;
+}
+body > header > buts > but:hover {
   text-shadow: 0 0 3px #fff;
 }
 
@@ -141,8 +150,12 @@ main > nav p {
   border-radius: 20px 0 0 20px;
   transition: background-color 0.2s;
 }
-main > nav p > ico {
+main > nav p::before {
+  content: "\e871";
+  font-family: icon;
   font-size: 15px;
+  line-height: 30px;
+  padding-right: 15px;
 }
 main > nav div {
   margin: 5px 0 10px 20px;
@@ -183,6 +196,11 @@ main > article > h1 {
   color: #dee;
   font-size: 20px;
   position: relative;
+}
+main > article > h1::before {
+  content: "\e871";
+  font-family: icon;
+  padding-right: 15px;
 }
 main > article > h1::after {
   content: "";
@@ -237,16 +255,23 @@ main > article > pre > code {
   overflow-y: auto;
 }
 
-main > article > ol {
+main > article > ol, main > article > ul {
   padding: 0 0 0 20px;
   margin: 5px 20px;
 }
-main > article > ol > li {
+main > article > ol > li, main > article > ul > li {
   padding: 5px 5px;
 }
 main > article > ol > li::marker {
   color: #cdd;
 }
+main > article > ul > li::marker {
+  content: "\e842";
+  font-family: icon;
+  font-size: 15px;
+  color: #cdd;
+}
+
 
 main > article table {
   border-collapse: collapse;
@@ -287,7 +312,7 @@ about > svg-cont > svg {
 }
 
 about > h1 {
-  font-size: 45px;
+  font-size: 48px;
   margin: 40px 0 25px 0;
 }
 about > p {

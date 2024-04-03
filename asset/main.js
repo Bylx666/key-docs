@@ -43,9 +43,6 @@ function render_nav(book) {
   for (let i=0; i<list.length; i+=2) {
     let $p = new_dom("p");
     $nav.append($p);
-    let $ico = new_dom("ico");
-    $ico.innerHTML = "&#xe847;";
-    $p.append($ico);
     $p.append(list[i+1]);
 
     $p.onclick = ()=> {
@@ -168,6 +165,10 @@ window.onpopstate = ()=> {
 
 rout.go(location.pathname)
 
-document.getElementById("header-about").onclick = ()=> rout.go_about();
+{
+  let $buts = document.querySelector("buts").children;
+  $buts[0].onclick = ()=>rout.go("/guide");
+  $buts[2].onclick = ()=>rout.go_about();
+}
 document.getElementById("header-back").onclick = ()=> history.back();
 
