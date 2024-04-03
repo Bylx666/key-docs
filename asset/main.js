@@ -1,7 +1,5 @@
 
-// github 链接
 // 在线尝试
-// 下一章按钮
 // 文章链接跳转
 
 var new_dom = (e)=> document.createElement(e);
@@ -13,8 +11,10 @@ const articles = {
     "3.declare", "基本类型 2",
     "4.nature", "Key语言哲学",
     "5.class", "类定义",
-    "6.ops", "运算符",
-    "7.if_for", "if和for"
+    "6.module", "模块化",
+    "7.ops", "运算符",
+    "8.if_for", "if和for",
+    "n.extern", "番外:extern"
   ]
 };
 
@@ -80,24 +80,37 @@ function md_to_dom(str) {
   $art.innerHTML = parsed;
   
   let wheel_offset = 0;
+  let trans_end = ()=> {
+    $art.ontransitionend = null;
+    let id = articles[last_book][last_arti];
+    rout.push(`/${last_book}/${id}`);
+    render_arti(last_book, id)
+    $art.style.transform = "";
+  };
+
   $art.onwheel = (e)=> {
-    if (e.deltaY<0 || $art.scrollTop + $art.clientHeight + 10 < $art.scrollHeight) {
-      return
-    }
-    wheel_offset += e.deltaY;
-    if (wheel_offset>1000) {
-      wheel_offset = 0;
-      if (articles[last_book][last_arti+2]) {
-        last_arti += 2;
-        $art.style.transform = "translateY(-120%)";
-        $art.ontransitionend = ()=> {
-          $art.ontransitionend = null;
-          let id = articles[last_book][last_arti];
-          rout.push(`/${last_book}/${id}`);
-          render_arti(last_book, id)
-          $art.style.transform = "";
+    if (e.deltaY > 0 && $art.scrollTop + $art.clientHeight + 10 > $art.scrollHeight) {
+      wheel_offset += e.deltaY;
+      if (wheel_offset>500) {
+        wheel_offset = 0;
+        if (articles[last_book][last_arti+2]) {
+          last_arti += 2;
+          $art.style.transform = "translateY(-120%)";
+          $art.ontransitionend = trans_end;
         }
       }
+    }else if (e.deltaY < 0 && $art.scrollTop < 10) {
+      wheel_offset += e.deltaY;
+      if (wheel_offset< -500) {
+        wheel_offset = 0;
+        if (articles[last_book][last_arti-2]) {
+          last_arti -= 2;
+          $art.style.transform = "translateY(120%)";
+          $art.ontransitionend = trans_end;
+        }
+      }
+    }else {
+      wheel_offset = 0;
     }
   }
   return $art
