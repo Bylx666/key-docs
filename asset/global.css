@@ -111,6 +111,23 @@ body > header > buts > but:hover {
   text-shadow: 0 0 3px #fff;
 }
 
+@keyframes blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  30%, 60% {
+    opacity: 1;
+  }
+}
+body > header.load::after {
+  content: "";
+  position: absolute;
+  left: 0;bottom: 0;width: 100%;
+  height: 3px;
+  background-image: linear-gradient(90deg, transparent 0%, #bcc 30%, #bcc 60%, transparent 100%);
+  animation: blink 0.7s infinite;
+}
+
 
 main {
   position: absolute;

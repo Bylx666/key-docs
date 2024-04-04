@@ -26,6 +26,9 @@ const $main = document.querySelector("main");
 const $nav = $main.querySelector("nav");
 const $about = document.querySelector("about");
 
+const $header = document.querySelector("header");
+const load = (n)=> $header.className = n;
+
 const $404 = document.getElementById("p404");
 $404.remove();
 
@@ -61,12 +64,14 @@ function render_arti(book, id) {
     $main.append($cac);
     return;
   }
-  fetch(`/articles/${book}/${id}.md`).then(v=>v.text()).then(str=> {
+  load("load");
+  setTimeout(()=> fetch(`/articles/${book}/${id}.md`).then(v=>v.text()).then(str=> {
     let $art = md_to_dom(str);
     caches[book][id] = $art;
     $main.children[1].remove();
     $main.append($art);
-  });
+    load("");
+  }), 1000);
 }
 
 function md_to_dom(str) {
