@@ -31,6 +31,9 @@ const $main = document.querySelector("main");
 const $nav = $main.querySelector("nav");
 const $about = document.querySelector("about");
 
+const $404 = document.getElementById("p404");
+$404.remove();
+
 let last_book = "";
 let last_arti = -2;
 
@@ -62,20 +65,27 @@ function render_arti(book, id) {
     return;
   }
   load_start();
-  fetch(`/articles/guide/${id}.md`).then(v=>v.text()).then(str=> {
+  setTimeout(()=> fetch(`/articles/${book}/${id}.md`).then(v=>v.text()).then(str=> {
     let $art = md_to_dom(str);
     caches[book][id] = $art;
     $main.children[1].remove();
     $main.append($art);
     load_end();
-  });
+  }),500);
 }
 
 function md_to_dom(str) {
   let parsed = marked.parse(str);
   let $art = new_dom("article");
   $art.innerHTML = parsed;
-  
+
+  // 路由jmp
+  for ($jmp of $art.querySelectorAll("jmp")) {
+    let to = $jmp.getAttribute("to");
+    $jmp.onclick = ()=> rout.go(to);
+  };
+
+  // 附加滚动
   let wheel_offset = 0;
   let trans_end = ()=> {
     $art.ontransitionend = null;
@@ -156,7 +166,15 @@ let rout = {
     };
   },
   go404() {
-    document.write(404);
+    if (at_about) {
+      $loading.append($svg);
+      $main.style.transform = "";
+      $about.style.transform = "translateX(-200%)";
+      at_about = false;
+    }
+    last_arti = -2;
+    $main.children[1].remove();
+    $main.append($404);
   }
 };
 window.onpopstate = ()=> {
@@ -168,7 +186,9 @@ rout.go(location.pathname)
 {
   let $buts = document.querySelector("buts").children;
   $buts[0].onclick = ()=>rout.go("/guide");
-  $buts[2].onclick = ()=>rout.go_about();
+  $buts[1].onclick = ()=>rout.go("/prim");
+  $buts[2].onclick = ()=>rout.go("/native");
+  $buts[3].onclick = ()=>rout.go_about();
 }
 document.getElementById("header-back").onclick = ()=> history.back();
 
