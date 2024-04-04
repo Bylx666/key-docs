@@ -22,11 +22,6 @@ let caches = {
   guide: {}
 };
 
-const $loading = document.getElementById("loading");
-const $svg = $loading.children[0];
-var load_start = ()=> $loading.className = "act";
-var load_end = ()=> $loading.className = "";
-
 const $main = document.querySelector("main");
 const $nav = $main.querySelector("nav");
 const $about = document.querySelector("about");
@@ -61,17 +56,17 @@ function render_nav(book) {
 function render_arti(book, id) {
   if(caches[book][id]) {
     $main.children[1].remove();
-    $main.append(caches[book][id]);
+    let $cac = caches[book][id];
+    $cac.style.transform = "";
+    $main.append($cac);
     return;
   }
-  load_start();
-  setTimeout(()=> fetch(`/articles/${book}/${id}.md`).then(v=>v.text()).then(str=> {
+  fetch(`/articles/${book}/${id}.md`).then(v=>v.text()).then(str=> {
     let $art = md_to_dom(str);
     caches[book][id] = $art;
     $main.children[1].remove();
     $main.append($art);
-    load_end();
-  }),500);
+  });
 }
 
 function md_to_dom(str) {
@@ -88,11 +83,10 @@ function md_to_dom(str) {
   // 附加滚动
   let wheel_offset = 0;
   let trans_end = ()=> {
-    $art.ontransitionend = null;
     let id = articles[last_book][last_arti];
     rout.push(`/${last_book}/${id}`);
-    render_arti(last_book, id)
-    $art.style.transform = "";
+    render_arti(last_book, id);
+    $art.ontransitionend = null;
   };
 
   $art.onwheel = (e)=> {
@@ -137,7 +131,6 @@ let rout = {
       return rout.go_about();
     }
     if (at_about) {
-      $loading.append($svg);
       $main.style.transform = "";
       $about.style.transform = "translateX(-200%)";
       at_about = false;
@@ -158,7 +151,6 @@ let rout = {
     if(at_about) {return}
     rout.push("/about");
     at_about = true;
-    $about.querySelector("svg-cont").append($svg);
     $main.style.transform = "translateX(100%)";
     $main.ontransitionend = ()=> {
       $main.ontransitionend = null;
@@ -167,7 +159,6 @@ let rout = {
   },
   go404() {
     if (at_about) {
-      $loading.append($svg);
       $main.style.transform = "";
       $about.style.transform = "translateX(-200%)";
       at_about = false;

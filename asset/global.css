@@ -34,17 +34,6 @@ a:hover, jmp:hover {
   text-shadow: 0 0 3px #fff;
 }
 
-#loading {
-  z-index: 100;
-  position: absolute;
-  left: 0;top: -100%;width: 100%;height: 100%;
-  background-color: #2A3830;
-  transition: top 0.3s;
-}
-#loading.act {
-  top: 0;
-}
-
 #loading > svg {
   position: absolute;
   width: 300px;
@@ -201,8 +190,8 @@ main > article {
   width: calc(100% - 400px);
   overflow: auto;
   font-size: 18px;
-  animation: fade-in 0.3s;
-  transition: transform 0.4s;
+  animation: fade-in 0.2s;
+  transition: transform 0.3s;
 }
 
 main > article > h1 {
@@ -320,7 +309,7 @@ about {
   font-family: code;
 }
 
-about > svg-cont > svg {
+about > svg {
   height: 300px;
 }
 
