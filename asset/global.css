@@ -125,7 +125,7 @@ body > header > buts > but:hover {
     opacity: 1;
   }
 }
-body > header::after {
+body > header.load::after {
   content: "";
   position: absolute;
   left: 0;bottom: 0;width: 100%;
@@ -264,6 +264,12 @@ main > article > h4 {
 
 main > article > p {
   padding-left: 20px;
+}
+main > article > p > img {
+  display: block;
+  width: calc(100% - 20px);
+  border-radius: 5px;
+  box-shadow: 0 0 10px #000;
 }
 
 main > article code {

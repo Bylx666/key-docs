@@ -102,3 +102,5 @@ WaitForSingleObject(thread_handle,99999)    // 类似thread.join, 第二个参�
 接下来你可能需要参考的内容是各个基本类型的内置方法 (挺多东西的, 不需要全部记住, 只需要在有人提及时来这里参考资料).
 
 对于想要促进Key语言发展的开发者来说, 请阅读<jmp to="/native/1.start">Key语言原生模块开发指南.</jmp>
+
+![](/asset/tabedeii.jpg)

@@ -15,11 +15,21 @@ const articles = {
     "7.ops", "运算符",
     "8.if_for", "if和for",
     "n.extern", "番外:extern"
+  ],
+  native: [
+    "1.prel", "序言",
+    "2.start", "开始",
+    "n.install", "附: Rust简单入门",
+  ],
+  prim: [
+    "1.start", "开始"
   ]
 };
 
 let caches = {
-  guide: {}
+  guide: {},
+  native: {},
+  prim: {}
 };
 
 const $main = document.querySelector("main");
@@ -65,13 +75,13 @@ function render_arti(book, id) {
     return;
   }
   load("load");
-  setTimeout(()=> fetch(`/articles/${book}/${id}.md`).then(v=>v.text()).then(str=> {
+  fetch(`/articles/${book}/${id}.md`).then(v=>v.text()).then(str=> {
     let $art = md_to_dom(str);
     caches[book][id] = $art;
     $main.children[1].remove();
     $main.append($art);
     load("");
-  }), 1000);
+  });
 }
 
 function md_to_dom(str) {
@@ -83,6 +93,10 @@ function md_to_dom(str) {
   for ($jmp of $art.querySelectorAll("jmp")) {
     let to = $jmp.getAttribute("to");
     $jmp.onclick = ()=> rout.go(to);
+  };
+  // 设置target=_blank
+  for ($a of $art.querySelectorAll("a")) {
+    $a.setAttribute("target", "_blank");
   };
 
   // 附加滚动
@@ -181,9 +195,18 @@ rout.go(location.pathname)
 
 {
   let $buts = document.querySelector("buts").children;
-  $buts[0].onclick = ()=>rout.go("/guide");
-  $buts[1].onclick = ()=>rout.go("/prim");
-  $buts[2].onclick = ()=>rout.go("/native");
+  $buts[0].onclick = ()=>{
+    rout.push("/guide");
+    rout.go("/guide");
+  };
+  $buts[1].onclick = ()=>{
+    rout.push("/prim");
+    rout.go("/prim");
+  }
+  $buts[2].onclick = ()=>{
+    rout.push("/native");
+    rout.go("/native");
+  };
   $buts[3].onclick = ()=>rout.go_about();
 }
 document.getElementById("header-back").onclick = ()=> history.back();
