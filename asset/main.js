@@ -6,23 +6,23 @@ var new_dom = (e)=> document.createElement(e);
 
 const articles = {
   guide: [
-    "1.start", "快速开始",
-    "2.declare", "基本类型 1",
-    "3.declare", "基本类型 2",
-    "4.nature", "Key语言哲学",
-    "5.class", "类定义",
-    "6.module", "模块化",
-    "7.ops", "运算符",
-    "8.if_for", "if和for",
+    "readme", "快速开始",
+    "1.declare", "基本类型 1",
+    "2.declare", "基本类型 2",
+    "3.nature", "Key语言哲学",
+    "4.class", "类定义",
+    "5.module", "模块化",
+    "6.ops", "运算符",
+    "7.if_for", "if和for",
     "n.extern", "番外:extern"
   ],
   native: [
-    "1.prel", "序言",
-    "2.start", "开始",
+    "readme", "序言",
+    "1.start", "开始",
     "n.install", "附: Rust简单入门",
   ],
   prim: [
-    "1.start", "开始"
+    "readme", "开始"
   ]
 };
 
@@ -160,7 +160,7 @@ let rout = {
     }
     render_nav(book);
 
-    let id = l[1]?l[1]:"1.start";
+    let id = l[1]?l[1]:"readme";
     last_arti = articles[book].indexOf(id);
     if (last_arti===-1) return rout.go404();
 
