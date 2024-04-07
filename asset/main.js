@@ -19,6 +19,9 @@ const articles = {
   native: [
     "readme", "序言",
     "1.start", "开始",
+    "2.func", "函数",
+    "3.class", "类",
+    "4.scope", "作用域",
     "n.install", "附: Rust简单入门",
   ],
   prim: [
@@ -67,21 +70,27 @@ function render_nav(book) {
 }
 
 function render_arti(book, id) {
+  load("load");
   if(caches[book][id]) {
     $main.children[1].remove();
     let $cac = caches[book][id];
     $cac.style.transform = "";
     $main.append($cac);
+    load("");
     return;
   }
-  load("load");
-  fetch(`/articles/${book}/${id}.md`).then(v=>v.text()).then(str=> {
+  fetch(`/articles/${book}/${id}.md`).then(v=>{
+    if (!v.ok) {
+      return Promise.reject()
+    }
+    return v.text()
+  }).then(str=> {
     let $art = md_to_dom(str);
     caches[book][id] = $art;
     $main.children[1].remove();
     $main.append($art);
     load("");
-  });
+  }).catch(()=> rout.go404())
 }
 
 function md_to_dom(str) {
@@ -101,38 +110,50 @@ function md_to_dom(str) {
 
   // 附加滚动
   let wheel_offset = 0;
+  let wheel_timeid = 0;
   let trans_end = ()=> {
     let id = articles[last_book][last_arti];
     rout.push(`/${last_book}/${id}`);
     render_arti(last_book, id);
     $art.ontransitionend = null;
+    $art.onwheel = wheel;
   };
+  let wheel = (e)=> {
+    if (!(
+      (e.deltaY > 0 && $art.scrollTop + $art.clientHeight + 10 > $art.scrollHeight)
+      || (e.deltaY < 0 && $art.scrollTop < 10)
+    )) return;
 
-  $art.onwheel = (e)=> {
-    if (e.deltaY > 0 && $art.scrollTop + $art.clientHeight + 10 > $art.scrollHeight) {
-      wheel_offset += e.deltaY;
-      if (wheel_offset>500) {
-        wheel_offset = 0;
-        if (articles[last_book][last_arti+2]) {
-          last_arti += 2;
-          $art.style.transform = "translateY(-120%)";
-          $art.ontransitionend = trans_end;
-        }
-      }
-    }else if (e.deltaY < 0 && $art.scrollTop < 10) {
-      wheel_offset += e.deltaY;
-      if (wheel_offset< -500) {
-        wheel_offset = 0;
-        if (articles[last_book][last_arti-2]) {
-          last_arti -= 2;
-          $art.style.transform = "translateY(120%)";
-          $art.ontransitionend = trans_end;
-        }
-      }
-    }else {
+    wheel_offset += e.deltaY;
+    $art.style.transform = "translateY("+(-wheel_offset/10)+"px)";
+    clearTimeout(wheel_timeid);
+    wheel_timeid = setTimeout(() => {
       wheel_offset = 0;
+      $art.style.transform = "translateY(0)";
+    }, 500);
+
+    if (wheel_offset>500) {
+      wheel_offset = 0;
+      if (articles[last_book][last_arti+2]) {
+        last_arti += 2;
+        clearTimeout(wheel_timeid);
+        $art.onwheel = null;
+        $art.style.transform = "translateY(-120%)";
+        $art.ontransitionend = trans_end;
+      }
+    }else if (wheel_offset< -500) {
+      wheel_offset = 0;
+      if (articles[last_book][last_arti-2]) {
+        last_arti -= 2;
+        clearTimeout(wheel_timeid);
+        $art.onwheel = null;
+        $art.style.transform = "translateY(120%)";
+        $art.ontransitionend = trans_end;
+      }
     }
   }
+
+  $art.onwheel = wheel;
   return $art
 }
 
@@ -182,6 +203,7 @@ let rout = {
       $about.style.transform = "translateX(-200%)";
       at_about = false;
     }
+    load("load");
     last_arti = -2;
     $main.children[1].remove();
     $main.append($404);
@@ -211,3 +233,9 @@ rout.go(location.pathname)
 }
 document.getElementById("header-back").onclick = ()=> history.back();
 
+
+$about.onmousemove = (e)=> {
+  let y = e.clientX / document.documentElement.clientWidth * 30 - 15;
+  let x = -e.clientY / document.documentElement.clientHeight * 30 + 15;
+  $about.querySelector("svg").style.transform = "rotateX("+x+"deg) rotateY("+ y +"deg)";
+};

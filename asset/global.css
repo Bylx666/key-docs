@@ -336,10 +336,13 @@ about {
   align-items: center;
   justify-content: center;
   font-family: code;
+  perspective: 200px;
+  transform-style: preserve-3d;
 }
 
 about > svg {
   height: 300px;
+  transform: rotateY(-90deg);
 }
 
 about > h1 {
