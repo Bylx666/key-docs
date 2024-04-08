@@ -21,7 +21,8 @@ const articles = {
     "1.start", "开始",
     "2.func", "函数",
     "3.class", "类",
-    "4.scope", "作用域",
+    "4.class", "类与unsafe",
+    "5.scope", "作用域",
     "n.install", "附: Rust简单入门",
   ],
   prim: [
@@ -235,7 +236,7 @@ document.getElementById("header-back").onclick = ()=> history.back();
 
 
 $about.onmousemove = (e)=> {
-  let y = e.clientX / document.documentElement.clientWidth * 30 - 15;
-  let x = -e.clientY / document.documentElement.clientHeight * 30 + 15;
+  let y = e.clientX / document.documentElement.clientWidth * 2 - 1;
+  let x = -e.clientY / document.documentElement.clientHeight * 2 + 0.3;
   $about.querySelector("svg").style.transform = "rotateX("+x+"deg) rotateY("+ y +"deg)";
 };
