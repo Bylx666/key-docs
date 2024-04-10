@@ -1,0 +1,40 @@
+/**
+ * prism.js theme for docs.subkey.top
+ * @author Subkey
+ */
+
+code {
+	text-shadow: -1px -1px 3px #122;
+	white-space: pre-wrap;
+  margin: 0 5px;
+  padding: 0 5px;
+  border-radius: 5px;
+  background-color: #344a;
+  color: #e0efef;
+	font-family: code, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono';
+}
+
+.token.keyword {
+	color: #dbb;
+}
+.token.namespace,
+.token.comment,
+.token.attribute  {
+	color: #abb;
+}
+.token.punctuation {
+	opacity: 0.8;
+}
+.token.operator,
+.token.function,
+.closure-params,
+.macro {
+	color: #ddb;
+}
+.token.class-name {
+	color: #bdd;
+}
+.token.string,
+.token.number {
+	color: #bee;
+}

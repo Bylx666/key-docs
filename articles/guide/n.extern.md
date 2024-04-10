@@ -8,7 +8,7 @@
 
 类似`mod`, `extern`使用以下语法(Win32 API环境为例):
 
-```
+```ks
 // 直球, 函数名会直接作变量名
 extern kernel32> 
   GetStdHandle(n:Int)
@@ -50,7 +50,7 @@ write(std(-11), s.to_utf16(), s.len)
 
 你甚至可以创建一个线程(见[Win32 CreateThread](https://learn.microsoft.com/zh-cn/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread)):
 
-```
+```ks
 // 警告: 代码仅供实验, 不要在生产环境依赖extern
 extern kernel32> {
   CreateThread(a,b,c,d,e,f)

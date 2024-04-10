@@ -99,10 +99,18 @@ function md_to_dom(str) {
   let $art = new_dom("article");
   $art.innerHTML = parsed;
 
+  // highlight
+  for ($code of $art.querySelectorAll("code")) {
+    Prism.highlightElement($code)
+  }
+
   // 路由jmp
   for ($jmp of $art.querySelectorAll("jmp")) {
     let to = $jmp.getAttribute("to");
-    $jmp.onclick = ()=> rout.go(to);
+    $jmp.onclick = ()=> {
+      rout.push(to);
+      rout.go(to)
+    };
   };
   // 设置target=_blank
   for ($a of $art.querySelectorAll("a")) {

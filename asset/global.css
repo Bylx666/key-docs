@@ -12,9 +12,6 @@ ico {
   user-select: none;
   -webkit-user-select: none;
 }
-code {
-  font-family: code;
-}
 
 a, jmp {
   text-decoration: none;
@@ -272,18 +269,12 @@ main > article > p > img {
   box-shadow: 0 0 10px #000;
 }
 
-main > article code {
-  margin: 0 5px;
-  padding: 0 5px;
-  border-radius: 5px;
-  background-color: #344a;
-  color: #e0efef;
-}
-
 main > article > pre > code {
   display: block;
   padding: 10px 20px;
   overflow-y: auto;
+  font-size: 18px;
+  line-height: 27px;
 }
 
 main > article > ol, main > article > ul {
