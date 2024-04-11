@@ -44,6 +44,7 @@ let caches_para = {
 
 const $main = document.querySelector("main");
 const $nav = $main.querySelector("nav");
+const $scrollbar = $main.querySelector("scroll");
 const $about = document.querySelector("about");
 
 const $header = document.querySelector("header");
@@ -102,9 +103,12 @@ function render_arti(book, id) {
   if(caches[book][id]) {
     $main.children[1].remove();
     $main.children[1].remove();
+    $main.children[1].remove();
     let $cac = caches[book][id];
     $cac.style.transform = "";
     $main.append($cac);
+    $scrollbar.style.height = "0px";
+    $main.append($scrollbar);
     $main.append(caches_para[book][id]);
     load("");
     return;
@@ -121,7 +125,10 @@ function render_arti(book, id) {
     caches_para[book][id] = $para;
     $main.children[1].remove();
     $main.children[1].remove();
+    $main.children[1].remove();
     $main.append($art);
+    $scrollbar.style.height = "0px";
+    $main.append($scrollbar);
     $main.append($para);
     load("");
   }).catch(()=> rout.go404())
@@ -198,6 +205,7 @@ function md_to_dom(str) {
   }
 
   $art.onwheel = wheel;
+  $art.onscroll = ()=> $scrollbar.style.height = $art.scrollTop / ($art.scrollHeight - $art.clientHeight) * 100 + "%";
   return $art
 }
 

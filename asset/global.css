@@ -35,6 +35,9 @@ a:hover, jmp:hover {
   background-color: #fff3;
   text-shadow: 0 0 2px #000;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 body {
   background-color: #2A3333;
   margin: 0;
@@ -151,6 +154,7 @@ main > nav, main > para {
   overflow: hidden auto;
   padding: 70px 20px 70px 20px;
   flex-grow: 1;
+  scrollbar-width: none;
 }
 main > nav {
   padding: 50px 20px 50px 20px;
@@ -217,6 +221,17 @@ main > article {
   font-size: 18px;
   animation: fade-in 0.2s;
   transition: transform 0.3s;
+  scrollbar-width: none;
+}
+main > scroll {
+  z-index: 1;
+  position: relative;
+  height: 0;
+  width: 5px;
+  right: 0;
+  top: 0;
+  background-image: linear-gradient(0deg, #bcc, #dee0);
+  border-radius: 2px;
 }
 
 main > article > h1 {
