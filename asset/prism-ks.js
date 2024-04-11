@@ -14,22 +14,20 @@
 				greedy: true
 			}
 		],
-		'string': {
-			pattern: /["'`](?:\\[\s\S]|[^\\`])*["'`]/,
-			greedy: true
-		},
+		'string': [
+			{
+				pattern: /"([\s\S])*?"/
+			},
+			{
+				pattern: /`(?:\\[\s\S]|[^\\`])*?`/
+			},
+			{
+				pattern: /'([\s\S])*?'/
+			}
+		],
 
 		'closure-params': {
-			pattern: /(?=([=(,:]\s*))\|[^|]*\||\|[^|]*\|/,
-			lookbehind: true,
-			greedy: true,
-			inside: {
-				'closure-punctuation': {
-					pattern: /^\||\|$/,
-					alias: 'punctuation'
-				},
-				rest: null // see below
-			}
+			pattern: /(?=([=(,:]\s*))\|[^|]*\||\|[^|]*\|/
 		},
 
 		'function-definition': {
@@ -49,10 +47,8 @@
 				alias: 'namespace'
 			}
 		],
-		'keyword': [
+		'keyword': 
 			/\b(is|for|key|async|await|let|const|extern|return|class|mod|for|if|else|break|continue|self|match)\b/,
-			/\b\:?=(\b|\s|\!|\-|[a-z])/
-		],
 
 		'function': /\b[a-z_@~]\w*(?=\s*\()/,
 		'constant': /\b[A-Z_@~][A-Z_@~\d]+\b/,
@@ -65,6 +61,7 @@
 			}
 		},
 
+		'number': /0u/,
 		'boolean': /\b(?:false|true)\b/,
 		'punctuation': /->|\.\.=|\.{1,3}|::|[{}[\];(),:]/,
 		'operator': /[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|[@?]/

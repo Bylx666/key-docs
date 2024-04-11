@@ -22,7 +22,7 @@
 
 此终端会自动定位(`cd`)到刚创建的`tst`文件夹, 此时输入`cargo init`, 就会发现目录里多了一个`src`文件夹和`Cargo.toml`, 此时你直接运行`cargo run`便会打印`hello world!`. 
 
-## `println!`
+## println!
 
 `println!()`是什么玩意? 这个长得像函数, 但带个感叹号的叫声明宏, 不用太在意怎么声明, 我们先考虑`println!`的用法:
 

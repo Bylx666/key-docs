@@ -26,11 +26,17 @@ const articles = {
     "n.install", "附: Rust简单入门",
   ],
   prim: [
-    "readme", "开始"
+    "readme", "开始",
+    "list", "List"
   ]
 };
 
 let caches = {
+  guide: {},
+  native: {},
+  prim: {}
+};
+let caches_para = {
   guide: {},
   native: {},
   prim: {}
@@ -70,13 +76,36 @@ function render_nav(book) {
   }
 }
 
+function art_to_para($art) {
+  let $para = new_dom("para");
+  for ($c of $art.children) {
+    let $p = new_dom("a");
+    switch ($c.tagName) {
+      case "H1": 
+      case "H2": 
+      case "H3": 
+      case "H4": 
+        $p.className = $c.tagName;
+        break;
+      default: continue
+    }
+    $p.textContent = $c.id = $c.textContent;
+    $c.id = $c.textContent;
+    $p.href = "#"+$c.id;
+    $para.append($p);
+  }
+  return $para;
+}
+
 function render_arti(book, id) {
   load("load");
   if(caches[book][id]) {
     $main.children[1].remove();
+    $main.children[1].remove();
     let $cac = caches[book][id];
     $cac.style.transform = "";
     $main.append($cac);
+    $main.append(caches_para[book][id]);
     load("");
     return;
   }
@@ -88,8 +117,12 @@ function render_arti(book, id) {
   }).then(str=> {
     let $art = md_to_dom(str);
     caches[book][id] = $art;
+    let $para = art_to_para($art);
+    caches_para[book][id] = $para;
+    $main.children[1].remove();
     $main.children[1].remove();
     $main.append($art);
+    $main.append($para);
     load("");
   }).catch(()=> rout.go404())
 }
@@ -114,6 +147,8 @@ function md_to_dom(str) {
   };
   // 设置target=_blank
   for ($a of $art.querySelectorAll("a")) {
+    let href = $a.getAttribute("href");
+    if (href&&href.startsWith("#")) continue;
     $a.setAttribute("target", "_blank");
   };
 
@@ -175,10 +210,17 @@ let rout = {
   go(s) {
     let l = s.split("/").filter((s)=>s!="");
     let book = l[0]?l[0]:"guide";
-
+    
     if (book == "about") {
       return rout.go_about();
     }
+    
+    let id = l[1]?l[1]:"readme";
+    let this_arti = articles[book].indexOf(id);
+    if (this_arti===-1) return rout.go404();
+    if (last_arti===this_arti&&book===last_book) return;
+    last_arti = this_arti;
+
     if (at_about) {
       $main.style.transform = "";
       $about.style.transform = "translateX(-200%)";
@@ -189,15 +231,11 @@ let rout = {
       return rout.go404();
     }
     render_nav(book);
-
-    let id = l[1]?l[1]:"readme";
-    last_arti = articles[book].indexOf(id);
-    if (last_arti===-1) return rout.go404();
-
     render_arti(book, id);
   },
   go_about() {
     if(at_about) {return}
+    last_book = "about";
     rout.push("/about");
     at_about = true;
     $main.style.transform = "translateX(100%)";
@@ -222,7 +260,7 @@ window.onpopstate = ()=> {
   rout.go(location.pathname)
 };
 
-rout.go(location.pathname)
+rout.go(location.pathname);
 
 {
   let $buts = document.querySelector("buts").children;

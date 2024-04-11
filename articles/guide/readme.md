@@ -9,6 +9,7 @@ log("hello world!")
 Key语言的全局函数非常少, 只有这几个
 
 - `log` (就是`print`)
+- `debug` (打印值的详细情况)
 - `throw` (手动报错)
 - `run_ks` (在当前作用域运行字符串,无返回值但可以直接和当前作用域交互)
 - `version` (获取Key编译器版本)

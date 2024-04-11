@@ -31,15 +31,6 @@ a:hover, jmp:hover {
   text-shadow: 0 0 3px #fff;
 }
 
-#loading > svg {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-}
-
 ::selection {
   background-color: #fff3;
   text-shadow: 0 0 2px #000;
@@ -153,26 +144,39 @@ main::after {
   color: #3446;
 }
 
-main > nav {
+main > nav, main > para {
+  z-index: 1;
   color: #cdd;
-  width: 320px;
-  height: 100%;
-  background-color: #2A3333;
   position: relative;
-  overflow: auto hidden;
-  padding: 30px 0 0 20px;
+  overflow: hidden auto;
+  padding: 70px 20px 70px 20px;
+  flex-grow: 1;
+}
+main > nav {
+  padding: 50px 20px 50px 20px;
 }
 
 main > nav p {
-  margin: 0;
-  padding: 5px 20px;
-  font-size: 20px;
-  line-height: 30px;
-  cursor: pointer;
-  border-radius: 20px 0 0 20px;
-  transition: background-color 0.2s;
+  font-size: 18px;
+  line-height: 32px;
 }
-main > nav p::before {
+main > para > a {
+  font-size: 16px;
+  line-height: 20px;
+}
+main > nav p, main > para > a {
+  margin: 0 20px 0 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+  width: 200px;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+main > nav p::before, main > para > a::before {
   content: "\e871";
   font-family: icon;
   font-size: 15px;
@@ -183,8 +187,9 @@ main > nav div {
   margin: 5px 0 10px 20px;
   border-left: 2px #677 dashed;
 } 
-main > nav p:hover {
+main > nav p:hover, main > para > a:hover {
   background-color: #fff2;
+  text-shadow: none;
 }
 main > nav p.inactive:hover {
   background-color: transparent;
@@ -207,7 +212,7 @@ main > article {
   background-color: #1C2222;
   box-shadow: 0 0 10px #1C2222;
   padding: 30px;
-  width: calc(100% - 400px);
+  width: 700px;
   overflow: auto;
   font-size: 18px;
   animation: fade-in 0.2s;
@@ -215,14 +220,16 @@ main > article {
 }
 
 main > article > h1 {
-  color: #dee;
-  font-size: 20px;
+  color: #eff;
+  font-size: 27px;
+  margin: 40px 0 0 0;
   position: relative;
 }
 main > article > h1::before {
   content: "\e871";
   font-family: icon;
   padding-right: 15px;
+  font-size: 30px;
 }
 main > article > h1::after {
   content: "";
@@ -235,10 +242,12 @@ main > article > h1::after {
 }
 
 main > article > h2 {
-  color: #cdd;
-  font-size: 20px;
+  color: #dee;
+  font-size: 24px;
+  margin: 30px 0 5px 0;
+  padding: 0 5px;
   position: relative;
-  display: inline;
+  display: inline-block;
 }
 main > article > h2::after {
   content: "";
@@ -247,20 +256,22 @@ main > article > h2::after {
   left: 0;
   bottom: 0px;
   height: 8px;
-  background-color: #cdd2;
+  background-color: #cdd5;
 }
 
 main > article > h3 {
-  color: #bcc;
+  color: #cdd;
   font-size: 20px;
 }
 main > article > h4 {
-  color: #abb;
+  color: #bcc;
   font-size: 20px;
 }
 
 main > article > p {
   padding-left: 20px;
+  margin: 20px 0;
+  line-height: 27px;
 }
 main > article > p > img {
   display: block;
@@ -313,6 +324,32 @@ main > article td {
 main > article td:first-child {
   /* border-right: 2px solid #abb; */
   padding-right: 30px;
+}
+
+main > para > .H2 {
+  margin-left: 10px;
+  width: 190px;
+}
+main > para > .H3 {
+  margin-left: 20px;
+  width: 180px;
+}
+main > para > .H4 {
+  margin-left: 30px;
+  width: 170px;
+}
+
+@media screen and (max-width: 1080px) {
+  main > nav p {
+    font-size: 14px;
+  }
+  main > article {
+    font-size: 16px;
+  }
+  main > para {
+    width: 0;
+    padding: 0;
+  }
 }
 
 about {
