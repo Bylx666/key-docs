@@ -24,6 +24,7 @@ const articles = {
     "3.class", "类",
     "4.class", "类与unsafe",
     "5.scope", "作用域",
+    "6.planet", "使用Planet",
     "n.install", "附: Rust简单入门",
   ],
   prim: [
@@ -278,20 +279,37 @@ window.onpopstate = ()=> {
 rout.go(location.pathname);
 
 {
-  let $buts = document.querySelector("buts").children;
-  $buts[0].onclick = ()=>{
+  let $buts = document.querySelector("buts");
+  $buts.children[0].onclick = ()=>{
     rout.push("/guide");
     rout.go("/guide");
   };
-  $buts[1].onclick = ()=>{
+  $buts.children[1].onclick = ()=>{
     rout.push("/prim");
     rout.go("/prim");
   }
-  $buts[2].onclick = ()=>{
+  $buts.children[2].onclick = ()=>{
     rout.push("/native");
     rout.go("/native");
   };
-  $buts[3].onclick = ()=>rout.go_about();
+  $buts.children[3].onclick = ()=>rout.go_about();
+
+  let $menu = $header.querySelector("mobile-menu");
+  function menu_show() {
+    $menu.onclick = menu_hid;
+    $header.style.cssText = "height:100%;background-color:#0115;";
+    $main.className = "blur";
+    $nav.style.cssText = "display:block;animation:fade-in 0.5s;";
+    $buts.style.cssText = "display:block;animation:fade-in 0.5s;";
+  }
+  function menu_hid() {
+    $menu.onclick = menu_show;
+    $header.style.cssText = "height:60px;opacity:1;";
+    $main.className = "";
+    $nav.style.cssText = "display:none;animation:none;";
+    $buts.style.cssText = "display:none;animation:none;";
+  }
+  $menu.onclick = menu_show;
 }
 document.getElementById("header-back").onclick = ()=> history.back();
 

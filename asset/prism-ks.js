@@ -1,10 +1,9 @@
 (function () {
-	var multilineComment = /\/'(?:[^'/])'\//.source;
 
 	Prism.languages.ks = {
 		'comment': [
 			{
-				pattern: RegExp(/(^|[^\\])/.source + multilineComment),
+				pattern: RegExp(/\/'([\s\S]|[^'\/])*'\//),
 				lookbehind: true,
 				greedy: true
 			},
@@ -48,7 +47,7 @@
 			}
 		],
 		'keyword': 
-			/\b(is|for|key|async|await|let|const|extern|return|class|mod|for|if|else|break|continue|self|match)\b/,
+			/\b(is|for|key|async|await|let|const|extern|return|class|mod|for|if|else|break|continue|self|match|fall)\b/,
 
 		'function': /\b[a-z_@~]\w*(?=\s*\()/,
 		'constant': /\b[A-Z_@~][A-Z_@~\d]+\b/,

@@ -38,12 +38,17 @@ a:hover, jmp:hover {
 ::-webkit-scrollbar {
   display: none;
 }
+html {
+  position: fixed;
+  width: 100%;height: 100%;
+}
 body {
   background-color: #2A3333;
   margin: 0;
   color: #fff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 
@@ -64,6 +69,7 @@ body > header > ico {
   padding: 0 20px 0 30px;
   cursor: pointer;
   transition: text-shadow 0.2s;
+  height: 60px;
 }
 body > header > ico:hover {
   text-shadow: 0 0 3px #fff;
@@ -100,6 +106,9 @@ body > header > buts > but::before {
 }
 body > header > buts > but:hover {
   text-shadow: 0 0 3px #fff;
+}
+body > header > mobile-menu {
+  display: none;
 }
 
 @keyframes blink {
@@ -358,19 +367,6 @@ main > para > .H4 {
   max-width: calc(100% - 50px);
 }
 
-@media screen and (max-width: 1000px) {
-  main > nav p {
-    font-size: 14px;
-  }
-  main > article {
-    font-size: 16px;
-  }
-  main > para {
-    width: 0;
-    padding: 0;
-  }
-}
-
 main > article > ret {
   display: flex;
   margin: 10px;
@@ -448,4 +444,62 @@ about > bg {
   );
   background-size: 50% 100%;
   background-repeat: repeat;
+}
+
+
+@media screen and (max-width: 1000px) {
+  main > nav p {
+    font-size: 14px;
+  }
+  main > article {
+    font-size: 16px;
+  }
+  main > para {
+    width: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  body > header {
+    transition: height 0.5s, background-color 0.5s;
+  }
+  body > header > buts {
+    display: none;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    color: #dee;
+  }
+  body > header > buts > but {
+    display: block;
+    font-size: 20px;
+    line-height: 28px;
+    padding: 10px 40px;
+  }
+  body > header > mobile-menu {
+    display: block;
+    position: absolute;
+    right: 0;top: 0;
+    padding: 10px 30px;
+    font-size: 24px;
+    line-height: 40px;
+    color: #cee;
+  }
+  main > nav {
+    z-index: 11;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 00px;
+    height: 100%;
+    width: 50%;
+  }
+  main > article {
+    padding: 20px;
+    transition: filter 0.5s;
+  }
+  main.blur > article {
+    filter: blur(5px);
+  }
 }
