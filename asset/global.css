@@ -174,6 +174,7 @@ main > nav p, main > para > a {
   border-radius: 5px;
   transition: background-color 0.2s;
   width: 200px;
+  max-width: calc(100% - 20px);
   padding-left: 20px;
   white-space: nowrap;
   overflow: hidden;
@@ -344,17 +345,20 @@ main > article td:first-child {
 main > para > .H2 {
   margin-left: 10px;
   width: 190px;
+  max-width: calc(100% - 30px);
 }
 main > para > .H3 {
   margin-left: 20px;
   width: 180px;
+  max-width: calc(100% - 40px);
 }
 main > para > .H4 {
   margin-left: 30px;
   width: 170px;
+  max-width: calc(100% - 50px);
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1000px) {
   main > nav p {
     font-size: 14px;
   }
@@ -365,6 +369,32 @@ main > para > .H4 {
     width: 0;
     padding: 0;
   }
+}
+
+main > article > ret {
+  display: flex;
+  margin: 10px;
+  width: calc(100% - 20px);
+}
+main > article > ret > d {
+  flex-grow: 1;
+  /* background-color: #fff; */
+  font-size: 24px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 2px solid #cdd;
+  color: #cdd;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+main > article > ret > d:last-child {
+  background-color: #cdd;
+  color: #1C2222;
+}
+main > article > ret > d:hover {
+  box-shadow: 0 0 10px #cdd;
 }
 
 about {
@@ -385,7 +415,6 @@ about {
 
 about > svg {
   height: 300px;
-  transform: rotateY(-90deg);
 }
 
 about > h1 {

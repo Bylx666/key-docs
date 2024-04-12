@@ -14,6 +14,7 @@ const articles = {
     "5.module", "模块化",
     "6.ops", "运算符",
     "7.if_for", "if和for",
+    "8.async", "异步操作",
     "n.extern", "番外:extern"
   ],
   native: [
@@ -27,7 +28,8 @@ const articles = {
   ],
   prim: [
     "readme", "开始",
-    "list", "List"
+    "list", "List",
+    "float", "Float",
   ]
 };
 
@@ -190,6 +192,7 @@ function md_to_dom(str) {
         clearTimeout(wheel_timeid);
         $art.onwheel = null;
         $art.style.transform = "translateY(-120%)";
+        $scrollbar.style.height = "0px";
         $art.ontransitionend = trans_end;
       }
     }else if (wheel_offset< -500) {
@@ -222,6 +225,9 @@ let rout = {
     if (book == "about") {
       return rout.go_about();
     }
+    if(!articles[book]) {
+      return rout.go404();
+    }
     
     let id = l[1]?l[1]:"readme";
     let this_arti = articles[book].indexOf(id);
@@ -235,9 +241,6 @@ let rout = {
       at_about = false;
     }
     
-    if(!articles[book]) {
-      return rout.go404();
-    }
     render_nav(book);
     render_arti(book, id);
   },
@@ -261,7 +264,11 @@ let rout = {
     load("load");
     last_arti = -2;
     $main.children[1].remove();
+    $main.children[1].remove();
+    $main.children[1].remove();
     $main.append($404);
+    $main.append(new_dom("para"));
+    $main.append($scrollbar);
   }
 };
 window.onpopstate = ()=> {
