@@ -335,8 +335,8 @@ main > article > ul > li::marker {
 main > article table {
   border-collapse: collapse;
   margin-bottom: 20px;
-  margin: 10px 0;
-  width: 100%;
+  margin: 10px 10px;
+  width: calc(100% - 20px);
   /* 这算ntr么 */
   display: block;
   overflow: auto;
@@ -349,6 +349,7 @@ main > article th {
   padding-bottom: 10px;
 }
 main > article td {
+  white-space: nowrap;
   padding-top: 10px;
   border-bottom: 1px solid #344;
 }
