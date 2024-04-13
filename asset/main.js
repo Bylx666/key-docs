@@ -30,6 +30,7 @@ const articles = {
   prim: [
     "readme", "开始",
     "list", "List",
+    "buf", "Buf",
     "float", "Float",
   ]
 };
@@ -94,7 +95,7 @@ function art_to_para($art) {
       default: continue
     }
     $p.textContent = $c.id = $c.textContent;
-    $c.id = $c.textContent;
+    $c.id = $c.textContent.replace(/\s/g, "-");
     $p.href = "#"+$c.id;
     $para.append($p);
   }

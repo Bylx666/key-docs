@@ -3,7 +3,7 @@
 	Prism.languages.ks = {
 		'comment': [
 			{
-				pattern: RegExp(/\/'([\s\S]|[^'\/])*'\//),
+				pattern: /\/'[^\/]*'\//,
 				lookbehind: true,
 				greedy: true
 			},
@@ -46,8 +46,7 @@
 				alias: 'namespace'
 			}
 		],
-		'keyword': 
-			/\b(is|for|key|async|await|let|const|extern|return|class|mod|for|if|else|break|continue|self|match|fall)\b/,
+		'keyword': /\b(is|for|key|async|await|let|const|extern|return|class|mod|for|if|else|break|continue|self|match|fall|take|swap)\b/,
 
 		'function': /\b[a-z_@~]\w*(?=\s*\()/,
 		'constant': /\b[A-Z_@~][A-Z_@~\d]+\b/,
