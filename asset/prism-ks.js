@@ -46,7 +46,7 @@
 				alias: 'namespace'
 			}
 		],
-		'keyword': /\b(is|for|key|async|await|let|const|extern|return|class|mod|for|if|else|break|continue|self|match|fall|take|swap)\b/,
+		'keyword': /\b(is|for|key|async|await|let|const|extern|return|class|mod|for|if|else|break|continue|self|match|fall|take|swap|clone)\b/,
 
 		'function': /\b[a-z_@~]\w*(?=\s*\()/,
 		'constant': /\b[A-Z_@~][A-Z_@~\d]+\b/,

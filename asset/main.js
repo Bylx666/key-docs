@@ -29,9 +29,13 @@ const articles = {
   ],
   prim: [
     "readme", "开始",
+    "global", "全局函数",
     "list", "List",
     "buf", "Buf",
     "float", "Float",
+    "int", "Int",
+    "float", "Float",
+    "obj", "Obj",
   ]
 };
 

@@ -274,6 +274,9 @@ main > article > h2 {
   position: relative;
   display: inline-block;
 }
+main > article > h2 > code {
+  background: none;
+}
 main > article > h2::after {
   content: "";
   position: absolute;
