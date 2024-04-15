@@ -9,11 +9,12 @@ const articles = {
     "1.declare", "基本类型 1",
     "2.declare", "基本类型 2",
     "3.nature", "Key语言哲学",
-    "4.class", "类定义",
-    "5.module", "模块化",
-    "6.ops", "运算符",
-    "7.if_for", "if和for",
-    "8.async", "异步操作",
+    "4.let", "变量声明",
+    "5.class", "类声明",
+    "6.module", "模块化",
+    "7.ops", "运算符",
+    "8.if_for", "if和for",
+    "9.async", "异步操作",
     "n.extern", "番外:extern"
   ],
   native: [
