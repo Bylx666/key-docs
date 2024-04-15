@@ -358,7 +358,7 @@ log(a.includes('{DE 89}')); // true
 |`as_utf16`|将数组作为utf16转码为utf8字符串`Str`|
 |`to_list`|将数组转换为元素皆为`Uint`的列表`List`|
 
-转为字符串的方法中, 错误编码会转成`U+FFFD`而不会报错. 与之对应的`Str::from_utf8`和`Str::from_utf16`则会在遇到错误时直接抛出. 
+转为字符串的方法中, 错误编码会转成`U+FFFD`而不会报错. 与之对应的<jmp to="/prim/str#from_utf8">`Str::from_utf8`</jmp>和<jmp to="/prim/str#from_utf8">`Str::from_utf16`</jmp>则会在遇到错误时直接抛出. 
 
 ### `join`
 

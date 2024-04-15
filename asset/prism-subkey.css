@@ -12,6 +12,10 @@ code {
   background-color: #344a;
   color: #e0efef;
 	font-family: code, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono';
+	transition: text-shadow 0.2s;
+}
+a > code:hover, jmp > code:hover {
+  text-shadow: 0 0 3px #fff;
 }
 
 .token.keyword {

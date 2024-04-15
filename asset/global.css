@@ -227,7 +227,8 @@ main > article {
   box-shadow: 0 0 10px #1C2222;
   padding: 30px;
   width: 700px;
-  overflow: auto;
+  max-width: 100%;
+  overflow: hidden auto;
   font-size: 18px;
   animation: fade-in 0.2s;
   transition: transform 0.3s;
@@ -474,6 +475,14 @@ about > bg {
   body > header {
     transition: height 0.5s, background-color 0.5s;
   }
+  body > header::before {
+    content: "跳转完成后再次点击关闭菜单 ^";
+    position: absolute;
+    right: 40px;
+    top: 70px;
+    font-size: 12px;
+    color: #899;
+  }
   body > header > buts {
     display: none;
     position: absolute;
@@ -495,6 +504,11 @@ about > bg {
     font-size: 24px;
     line-height: 40px;
     color: #cee;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  body > header > mobile-menu:active {
+    background-color: #cee;
+    color: #344;
   }
   main > nav {
     z-index: 11;
@@ -507,7 +521,6 @@ about > bg {
   }
   main > article {
     width: calc(100% - 40px);
-    overflow: scroll;
     padding: 20px;
     transition: filter 0.5s;
   }

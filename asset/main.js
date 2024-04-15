@@ -1,6 +1,5 @@
 
 // 在线尝试
-// 文章链接跳转
 
 var new_dom = (e)=> document.createElement(e);
 
@@ -32,10 +31,12 @@ const articles = {
     "global", "全局函数",
     "list", "List",
     "buf", "Buf",
+    "str", "Str",
     "float", "Float",
     "int", "Int",
     "float", "Float",
     "obj", "Obj",
+    "func", "Func"
   ]
 };
 
@@ -106,7 +107,7 @@ function art_to_para($art) {
   return $para;
 }
 
-function render_arti(book, id) {
+function render_arti(book, id, hash) {
   load("load");
   if(caches[book][id]) {
     $main.children[1].remove();
@@ -119,6 +120,7 @@ function render_arti(book, id) {
     $main.append($scrollbar);
     $main.append(caches_para[book][id]);
     load("");
+    if(hash) location.hash = hash;
     return;
   }
   fetch(`/articles/${book}/${id}.md`).then(v=>{
@@ -139,6 +141,7 @@ function render_arti(book, id) {
     $main.append($scrollbar);
     $main.append($para);
     load("");
+    if(hash) location.hash = hash;
   }).catch(()=> rout.go404())
 }
 
@@ -225,7 +228,9 @@ let rout = {
     history.pushState(0,"",s);
   },
   go(s) {
-    let l = s.split("/").filter((s)=>s!="");
+    var s = s.split("#");
+    let hash = s[1];
+    let l = s[0].split("/").filter((s)=>s!="");
     let book = l[0]?l[0]:"guide";
     
     if (book == "about") {
@@ -248,7 +253,7 @@ let rout = {
     }
     
     render_nav(book);
-    render_arti(book, id);
+    render_arti(book, id, hash);
   },
   go_about() {
     if(at_about) {return}
@@ -278,10 +283,10 @@ let rout = {
   }
 };
 window.onpopstate = ()=> {
-  rout.go(location.pathname)
+  rout.go(location.pathname+location.hash);
 };
 
-rout.go(location.pathname);
+rout.go(location.pathname+location.hash);
 
 {
   let $buts = document.querySelector("buts");
