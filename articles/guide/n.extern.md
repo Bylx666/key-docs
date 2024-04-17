@@ -57,7 +57,7 @@ extern kernel32> {
   WaitForSingleObject(a,b)
 }
 let f(a) {
-  print(a)
+  log(a)
 }
 let thread_handle = CreateThread(,,f,22,,); // 类似thread.spawn
 WaitForSingleObject(thread_handle,99999)    // 类似thread.join, 第二个参数是超时时间
