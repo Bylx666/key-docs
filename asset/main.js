@@ -324,6 +324,15 @@ rout.go(location.pathname+location.hash);
     $buts.style.cssText = "display:none;animation:none;";
   }
   $menu.onclick = menu_show;
+
+
+  let $clickeff = document.querySelector("click-effect");
+  document.addEventListener("click", (e)=> {
+    let d = new_dom("div");
+    d.style.cssText = `top:${e.clientY-5}px;left:${e.clientX-5}px;`;
+    d.onanimationend = ()=> d.remove();
+    $clickeff.append(d);
+  });
 }
 document.getElementById("header-back").onclick = ()=> history.back();
 

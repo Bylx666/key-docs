@@ -61,7 +61,7 @@
           stroke: url(#svg-linear-triangle);
           stroke-width: 4px;
           fill: none;
-          stroke-dasharray: 150;
+          stroke-dasharray: 137;
           stroke-dashoffset: 0;
           stroke-linecap: round;
           animation: loading-svg-triangle 3s infinite;
@@ -69,14 +69,14 @@
         @keyframes loading-svg-triangle {
           0%, 20% {
             stroke-width: 2px;
-            stroke-dashoffset: 0;
+            stroke-dashoffset: -10;
           }
           50% {
             stroke-width: 0px;
           }
           80%, 100% {
             stroke-width: 2px;
-            stroke-dashoffset: 300;
+            stroke-dashoffset: 264;
           }
         }
 
@@ -108,8 +108,8 @@
       <ellipse cx="32" cy="26.5" rx="25" ry="1.5"/>
       <!-- 三角形 -->
       <g>
-        <polygon points="32,8 56,48 8,48"/>
-        <polygon points="32,45 8,5 56,5"/>
+        <polygon points="56,48 8,48 32,8"/>
+        <polygon points="8,5 56,5 32,45"/>
       </g>
       <!-- 中心圆 -->
       <circle cx="32" cy="26.5" r="7"/>
@@ -131,6 +131,9 @@
     </p>
     <ret><d onclick="history.back()">返回</d><d onclick="rout.push('/');rout.go('/');">主页</d></ret>
   </article>
+
+  <click-effect></click-effect>
+  
   <script src="/asset/marked.min.js"></script>
   <script src="/asset/prism-core.min.js"></script>
   <script src="/asset/prism-rust.min.js"></script>
