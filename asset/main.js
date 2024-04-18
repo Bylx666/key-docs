@@ -39,18 +39,23 @@ const articles = {
     "float", "Float",
     "obj", "Obj",
     "func", "Func"
+  ],
+  wasm: [
+    "readme", "演武场"
   ]
 };
 
 let caches = {
   guide: {},
   native: {},
-  prim: {}
+  prim: {},
+  wasm: {}
 };
 let caches_para = {
   guide: {},
   native: {},
-  prim: {}
+  prim: {},
+  wasm: {}
 };
 
 const $main = document.querySelector("main");
