@@ -52,13 +52,6 @@
 		'constant': /\b[A-Z_@~][A-Z_@~\d]+\b/,
 		'class-name': /\b[A-Z_@~]\w*\b/,
 
-		'namespace': {
-			pattern: /(?:\b[a-z_@~][a-z_@~\d]*\s*[::|\-:|\-.]\s*)*\b/,
-			inside: {
-				'punctuation': /[::|\-:|\-.]/
-			}
-		},
-
 		'number': /0u/,
 		'boolean': /\b(?:false|true)\b/,
 		'punctuation': /->|\.\.=|\.{1,3}|::|[{}[\];(),:]/,

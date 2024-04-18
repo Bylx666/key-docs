@@ -1,6 +1,4 @@
 
-// 在线尝试
-
 var new_dom = (e)=> document.createElement(e);
 
 const articles = {
@@ -154,25 +152,29 @@ function md_to_dom(str) {
   let $art = new_dom("article");
   $art.innerHTML = parsed;
 
-  // highlight
-  for ($code of $art.querySelectorAll("code")) {
-    Prism.highlightElement($code)
-  }
-
   // 路由jmp
-  for ($jmp of $art.querySelectorAll("jmp")) {
+  $art.querySelectorAll("jmp").forEach($jmp=> {
     let to = $jmp.getAttribute("to");
     $jmp.onclick = ()=> {
       rout.push(to);
       rout.go(to)
     };
-  };
+  });
+
   // 设置target=_blank
   for ($a of $art.querySelectorAll("a")) {
     let href = $a.getAttribute("href");
     if (href&&href.startsWith("#")) continue;
     $a.setAttribute("target", "_blank");
   };
+
+  // 为codes添加play按钮
+  $art.querySelectorAll("pre>code").forEach(($code)=> {
+    Prism.highlightElement($code);
+    let $play = new_dom("play");
+    $play.onclick = ()=> play($code.textContent);
+    $code.append($play);
+  });
 
   // 附加滚动
   let wheel_offset = 0;
@@ -342,3 +344,25 @@ $about.onmousemove = (e)=> {
   let x = -e.clientY / document.documentElement.clientHeight * 2 + 0.3;
   $about.querySelector("svg").style.transform = "rotateX("+x+"deg) rotateY("+ y +"deg)";
 };
+
+let play_window = null;
+let play_loaded = false;
+function play(s) {
+  if(!play_loaded) {
+    play_window = window.open("https://play.subkey.top/");
+    play_loaded = s;
+    window.onmessage = (e)=> {
+      if(e.data==="load") {
+        play_window.postMessage(play_loaded, "*");
+        play_loaded = true;
+      }
+      if(e.data==="close") {
+        play_loaded = false;
+        play_window = null;
+      }
+    }
+  }else {
+    play_window.postMessage(s, "*")
+  }
+  play_window.focus();
+}

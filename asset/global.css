@@ -316,6 +316,35 @@ main > article > pre > code {
   white-space: pre;
   font-size: 18px;
   line-height: 27px;
+  position: relative;
+}
+
+main > article > pre > code > play {
+  opacity: 0;
+  transition: all 0.2s;
+  color: #fff;
+  background-color: #4555;
+  font-family: icon;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 24px;
+  line-height: 30px;
+  width: 30px;
+  border-radius: 10px;
+  text-align: center;
+  text-shadow: none;
+}
+main > article > pre > code:hover > play {
+  opacity: 1;
+}
+main > article > pre > code > play::after {
+  content: "\e842";
+}
+main > article > pre > code > play:hover {
+  color: #122;
+  background-color: #eff;
+  box-shadow: 0 0 3px 2px #eff;
 }
 
 main > article > ol, main > article > ul {
