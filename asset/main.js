@@ -3,8 +3,12 @@ var new_dom = (e)=> document.createElement(e);
 
 const articles = {
   guide: [
-    "readme", "快速开始",
-    "1.declare", "基本类型 1",
+    "readme", "入门",
+    "1.let", "声明变量",
+    "2.num", "使用数字",
+    "3.str", "使用字符串",
+    "4.collect", "列表和数组",
+
     "2.declare", "基本类型 2",
     "3.nature", "Key语言哲学",
     "4.let", "变量声明",
@@ -36,9 +40,11 @@ const articles = {
     "str", "Str",
     "float", "Float",
     "int", "Int",
+    "uint", "Uint",
     "float", "Float",
     "obj", "Obj",
-    "func", "Func"
+    "func", "Func",
+    "bool", "Bool"
   ],
   wasm: [
     "readme", "演武场"
@@ -254,7 +260,10 @@ let rout = {
     let id = l[1]?l[1]:"readme";
     let this_arti = articles[book].indexOf(id);
     if (this_arti===-1) return rout.go404();
-    if (last_arti===this_arti&&book===last_book) return;
+    if (last_arti===this_arti&&book===last_book) {
+      if(hash) location.hash = hash;
+      return;
+    }
     last_arti = this_arti;
 
     if (at_about) {
