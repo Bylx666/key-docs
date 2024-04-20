@@ -8,6 +8,8 @@ const articles = {
     "2.num", "使用数字",
     "3.str", "使用字符串",
     "4.collect", "列表和数组",
+    "5.for", "if和for",
+    "6.func", "函数",
 
     "2.declare", "基本类型 2",
     "3.nature", "Key语言哲学",
