@@ -309,24 +309,28 @@ main > article > p > img {
   box-shadow: 0 0 10px #000;
 }
 
+main > article > pre {
+  width: calc(100% - 20px);
+  position: relative;
+}
 main > article > pre > code {
   display: block;
+  width: calc(100% - 30px);
   padding: 10px 20px;
   overflow-y: auto;
   white-space: pre;
   font-size: 18px;
   line-height: 27px;
-  position: relative;
 }
 
-main > article > pre > code > play {
+main > article > pre > play {
   opacity: 0;
   transition: all 0.2s;
   color: #fff;
   background-color: #4555;
   font-family: icon;
   position: absolute;
-  right: 10px;
+  right: 0;
   top: 10px;
   font-size: 24px;
   line-height: 30px;
@@ -335,13 +339,13 @@ main > article > pre > code > play {
   text-align: center;
   text-shadow: none;
 }
-main > article > pre > code:hover > play {
+main > article > pre:hover > play {
   opacity: 1;
 }
-main > article > pre > code > play::after {
+main > article > pre > play::after {
   content: "\e842";
 }
-main > article > pre > code > play:hover {
+main > article > pre > play:hover {
   color: #122;
   background-color: #eff;
   box-shadow: 0 0 3px 2px #eff;

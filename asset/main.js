@@ -7,21 +7,14 @@ const articles = {
     "1.let", "声明变量",
     "2.num", "使用数字",
     "3.str", "使用字符串",
-    "4.collect", "列表和数组",
+    "4.collect", "集合类型",
     "5.for", "if和for",
     "6.func", "函数",
-
-    "2.declare", "基本类型 2",
-    "3.nature", "Key语言哲学",
-    "4.let", "变量声明",
-    "5.func", "函数声明",
-    "6.class", "类声明",
-    "7.module", "模块化",
-    "8.ops", "运算符",
-    "9.if_for", "if和for",
-    "10.async", "异步操作",
-    "11.try", "异常处理",
-    "12.match", "匹配",
+    "7.class", "类声明",
+    "8.mod", "模块化",
+    "9.async", "异步操作",
+    "10.try", "异常处理",
+    "11.match", "匹配",
     "n.extern", "番外:extern"
   ],
   native: [
@@ -186,7 +179,7 @@ function md_to_dom(str) {
     Prism.highlightElement($code);
     let $play = new_dom("play");
     $play.onclick = ()=> play($code.textContent);
-    $code.append($play);
+    $code.parentElement.append($play);
   });
 
   // 附加滚动
