@@ -395,6 +395,15 @@ main > article td:first-child {
   padding-right: 30px;
 }
 
+main > article > hr {
+  border: none;
+  height: 3px;
+  background-color: #677;
+  width: 300px;
+  border-radius: 1px;
+  margin: 20px 30px;
+}
+
 main > para > .H2 {
   margin-left: 10px;
   width: 190px;

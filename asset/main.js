@@ -30,16 +30,15 @@ const articles = {
   prim: [
     "readme", "开始",
     "global", "全局函数",
-    "list", "List",
-    "buf", "Buf",
-    "str", "Str",
-    "float", "Float",
+    "func", "Func",
+    "bool", "Bool",
     "int", "Int",
     "uint", "Uint",
     "float", "Float",
+    "str", "Str",
+    "list", "List",
+    "buf", "Buf",
     "obj", "Obj",
-    "func", "Func",
-    "bool", "Bool"
   ],
   wasm: [
     "readme", "演武场"
@@ -177,6 +176,7 @@ function md_to_dom(str) {
   // 为codes添加play按钮
   $art.querySelectorAll("pre>code").forEach(($code)=> {
     Prism.highlightElement($code);
+    if (!$code.classList.contains("language-ks")) return;
     let $play = new_dom("play");
     $play.onclick = ()=> play($code.textContent);
     $code.parentElement.append($play);
