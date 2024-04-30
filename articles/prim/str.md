@@ -172,7 +172,7 @@ log(a.replace("一个", "", 2));
 |`uninit`|空字符串`""`|
 |数字|转换为其十进制表示|
 |`Bool`|`true`或`false`|
-|`Func`|`<Local Function>`或`<Native Function>`|
+|`Func`|`<Function 函数名>`或`<Native Function>`|
 |`Str`|直接复制|
 |`List`|`[]`包围, 内部的元素逐个依此规则转为字符串并用`, `分隔|
 |`Buf`|`Buf[]`包围, 内部的数字逐个按`十六进制`表示并用`, `分隔|
